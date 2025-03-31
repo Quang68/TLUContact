@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="TLU Contact"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BTDanhSach"
+        tools:targetApi="31" >
+        <activity
+            android:name=".Add.AddSinhVien"
+            android:exported="false"
+            android:theme="@style/Theme.BTDanhSach" />
+        <activity
+            android:name=".Activity.SinhVienActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.BTDanhSach.NoActionBar" />
+        <activity
+            android:name=".OTPVerificationActivity"
+            android:exported="false"
+            android:label="Xác thực OTP"
+            android:parentActivityName=".DangNhap" />
+        <activity
+            android:name=".DangKy"
+            android:exported="false"
+            android:label="Đăng ký tài khoản"
+            android:parentActivityName=".DangNhap" /> <!-- /> -->
+        <!-- </activity> -->
+        <activity
+            android:name=".updateCanBo"
+            android:exported="false"
+            android:label="Sửa cán bộ"
+            android:parentActivityName=".canbo_chitiet" />
+        <activity
+            android:name=".Add.AddCanBo"
+            android:exported="false"
+            android:label="Thêm cán bộ"
+            android:parentActivityName=".Activity.CanBoActivity" />
+        <activity
+            android:name=".update_donvi"
+            android:exported="false"
+            android:label="Sửa đơn vị"
+            android:parentActivityName=".donvi_chitiet" />
+        <activity
+            android:name=".Add.AddDonVi"
+            android:exported="false"
+            android:label="Thêm đơn vị"
+            android:parentActivityName=".Activity.DonViActivity" />
+        <activity
+            android:name=".donvi_chitiet"
+            android:exported="false"
+            android:label="Thông tin chi tiết"
+            android:parentActivityName=".Activity.DonViActivity" />
+        <activity
+            android:name=".canbo_chitiet"
+            android:exported="false"
+            android:label="Thông tin chi tiết"
+            android:parentActivityName=".Activity.CanBoActivity" />
+        <activity
+            android:name=".Activity.CanBoActivity"
+            android:exported="false"
+            android:label="Cán Bộ Nhân Viên"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Activity.DonViActivity"
+            android:exported="false"
+            android:label="Đơn Vị"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DangNhap"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

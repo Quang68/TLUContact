@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".canbo_chitiet"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:id="@+id/imv_AvataCB"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:src="@drawable/avata" />
+
+    <TextView
+        android:id="@+id/txt_nameCB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên cán bộ"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/txt_chucvuCB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chức vụ"
+        android:textColor="#757575"
+        android:textSize="16sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/txt_sdtCB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số điện thoại"
+        android:textColor="#757575"
+        android:textSize="16sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/txt_emailCB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="#757575"
+        android:textSize="16sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/txt_donvicongtacCB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đơn vị công tác"
+        android:textColor="#757575"
+        android:textSize="16sp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/txt_idCB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textColor="#757575"
+        android:textSize="16sp"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Button Phone -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/btnPhoneCB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Phone"
+                app:srcCompat="@drawable/phone" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Button Chat -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/btnChatCB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Chat"
+                app:srcCompat="@drawable/chat" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Button Video Call -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/btnVideoCallCB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Video Call"
+                app:srcCompat="@drawable/videocall" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="4dp">
+
+            <ImageButton
+                android:id="@+id/btnEmailCB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Email"
+                app:srcCompat="@drawable/email" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>

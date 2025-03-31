@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:importantForAccessibility="no"
+        android:src="@drawable/logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="Logo"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@android:drawable/ic_dialog_email"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/edtEmailLogin"
+            android:hint="Email"
+            android:textColorHint="#C0C0C0"
+            android:textColor="@color/black"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@android:drawable/ic_menu_edit"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/edtPasswordLogin"
+            android:hint="Password"
+            android:textColorHint="#C0C0C0"
+            android:textColor="@color/black"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/imgShowPasswordLogin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/eye"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnLoginLogin"
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/txtGoToRegisterLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Register"
+        android:textColor="@android:color/holo_blue_bright"
+        android:layout_marginTop="8dp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>
