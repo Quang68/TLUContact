@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.btdanhsach.Activity.CanBoActivity;
-import com.example.btdanhsach.Activity.DonViActivity;
+import com.example.btdanhsach.Chitiet.canbo_chitiet;
 import com.example.btdanhsach.Contact.CanBo;
-import com.example.btdanhsach.Contact.Donvi;
 
 import java.util.List;
 
@@ -39,7 +39,11 @@ public class CanBoAdapter extends RecyclerView.Adapter<CanBoViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull CanBoViewHolder holder, int position) {
         CanBo canBo = dsCanBo.get(position);
-        holder.imvAvatar.setImageResource(canBo.getAvatar());
+        Glide.with(holder.itemView.getContext())
+                .load(canBo.getAvatar()) // Lấy ảnh đầu tiên trong danh sách
+                .placeholder(R.drawable.avata) // Ảnh tạm khi load
+                .error(R.drawable.avata) // Ảnh hiển thị nếu load lỗi
+                .into(holder.imvAvatar);
         holder.txtName.setText(canBo.getName());
 //        holder.txtChucvu.setText(canBo.getChucvu());
         holder.txtSdt.setText(canBo.getSdt());
@@ -62,5 +66,9 @@ public class CanBoAdapter extends RecyclerView.Adapter<CanBoViewHolder>{
     @Override
     public int getItemCount() {
         return dsCanBo.size();
+    }
+    public void updateList(List<CanBo> newList) {
+        this.dsCanBo = newList;
+        notifyDataSetChanged();
     }
 }

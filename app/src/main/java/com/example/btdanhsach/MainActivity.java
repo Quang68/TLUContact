@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -15,6 +17,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.bumptech.glide.Glide;
+import com.example.btdanhsach.Activity.CanBoActivity;
+import com.example.btdanhsach.Contact.CanBo;
+import com.example.btdanhsach.Update.updateCanBo;
+import com.example.btdanhsach.Update.update_sinhvien;
 import com.example.btdanhsach.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -80,10 +88,44 @@ public class MainActivity extends AppCompatActivity {
             navController.navigate(id);
         } else if (id == R.id.nav_logout) {
             showLogoutDialog();
+        } else if (id == R.id.nav_update) {
+            Update();
         }
 
         drawer.closeDrawers();
         return true;
+    }
+
+    private void Update() {
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid(); // Lấy UID của người dùng từ Firebase Authentication
+
+            // 🔹 Truy vấn dữ liệu từ Firestore
+            DocumentReference userRef = db.collection("users").document(userId);
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot snapshot = task.getResult();
+                    if (snapshot.exists()) {
+                        // 🔹 Lấy dữ liệu từ Firestore
+                        String role = snapshot.getString("role");
+                        if (role.equals("CBGV")){
+                            UpdateCanBo(userId);
+                        }else {
+                            UpdateSinhVien(userId);
+                        }
+
+
+                    } else {
+                        Toast.makeText(this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, "Lỗi tải dữ liệu", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Chưa đăng nhập", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showLogoutDialog() {
@@ -107,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
         // 🔹 Tìm TextView trong Header
         TextView nameTextView = headerView.findViewById(R.id.NameNAV);
         TextView emailTextView = headerView.findViewById(R.id.EmailView);
+        ImageView avatarImageView = headerView.findViewById(R.id.imageViewNAV);
+
 
         // 🔹 Lấy thông tin người dùng từ Firebase Authentication
         FirebaseUser user = auth.getCurrentUser();
@@ -123,10 +167,16 @@ public class MainActivity extends AppCompatActivity {
                         // 🔹 Lấy dữ liệu từ Firestore
                         String name = snapshot.getString("fullName");
                         String email = snapshot.getString("email");
+                        String avatar = snapshot.getString("photoURL");
 
                         // 🔹 Cập nhật UI
                         nameTextView.setText(name != null ? name : "Chưa cập nhật");
                         emailTextView.setText(email != null ? email : "Chưa cập nhật");
+                        Glide.with(this)
+                                .load(avatar) // Lấy ảnh đầu tiên trong danh sách
+                                .placeholder(R.drawable.avata) // Ảnh tạm khi load
+                                .error(R.drawable.avata) // Ảnh hiển thị nếu load lỗi
+                                .into(avatarImageView);
                     } else {
                         nameTextView.setText("Không tìm thấy dữ liệu");
                         emailTextView.setText("Không tìm thấy dữ liệu");
@@ -140,6 +190,86 @@ public class MainActivity extends AppCompatActivity {
             nameTextView.setText("Chưa đăng nhập");
             emailTextView.setText("Chưa đăng nhập");
         }
+    }
+
+    private void UpdateCanBo(String userID){
+
+        DocumentReference userRef = db.collection("staff").document(userID);
+        userRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot snapshot = task.getResult();
+                if (snapshot.exists()) {
+                    // 🔹 Lấy dữ liệu từ Firestore
+                    String id = snapshot.getString("id");
+                    String name = snapshot.getString("fullName");
+                    String chucvu = snapshot.getString("position");
+                    String sdt = snapshot.getString("phoneNumber");
+                    String email = snapshot.getString("email");
+                    String donvicongtac = snapshot.getString("departmant");
+                    String avatar = snapshot.getString("photoURL");
+
+
+
+                    Intent intent = new Intent(this, updateCanBo.class);
+                    intent.putExtra("id", id); // Gửi ID của cán bộ sang EditDonViActivity
+                    intent.putExtra("name", name);
+                    intent.putExtra("chucvu", chucvu);
+                    intent.putExtra("sdt", sdt);
+                    intent.putExtra("email", email);
+                    intent.putExtra("donvicongtac", donvicongtac);
+                    intent.putExtra("avatar", avatar);
+                    intent.putExtra("userID", userID);
+                    startActivity(intent);
+
+
+                } else {
+                    Toast.makeText(this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Lỗi tải dữ liệu", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void UpdateSinhVien(String userID){
+
+        DocumentReference userRef = db.collection("students").document(userID);
+        userRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot snapshot = task.getResult();
+                if (snapshot.exists()) {
+                    // 🔹 Lấy dữ liệu từ Firestore
+                    String id = snapshot.getString("id");
+                    String name = snapshot.getString("fullName");
+                    String sdt = snapshot.getString("phoneNumber");
+                    String email = snapshot.getString("email");
+                    String diachi = snapshot.getString("address");
+                    String lop = snapshot.getString("lop");
+                    String avatar = snapshot.getString("photoURL");
+
+
+
+                    Intent intent = new Intent(this, update_sinhvien.class);
+                    intent.putExtra("id", id); // Gửi ID của cán bộ sang EditDonViActivity
+                    intent.putExtra("name", name);
+                    intent.putExtra("sdt", sdt);
+                    intent.putExtra("email", email);
+                    intent.putExtra("diachi", diachi);
+                    intent.putExtra("lop", lop);
+                    intent.putExtra("avatar", avatar);
+                    intent.putExtra("userID", userID);
+                    startActivity(intent);
+
+
+                } else {
+                    Toast.makeText(this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Lỗi tải dữ liệu", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }

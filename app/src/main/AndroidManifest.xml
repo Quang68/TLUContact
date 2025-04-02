@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,21 +14,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BTDanhSach"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".Chitiet.SinhVienChiTietActivity"
+            android:exported="false"
+            android:label="Thông tin chi tiết"
+            android:parentActivityName=".Activity.SinhVienActivity"/>
         <activity
             android:name=".Add.AddSinhVien"
             android:exported="false"
             android:theme="@style/Theme.BTDanhSach" />
         <activity
             android:name=".Activity.SinhVienActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Danh sách Sinh Viên"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.BTDanhSach.NoActionBar" />
         <activity
-            android:name=".OTPVerificationActivity"
+            android:name=".SMS.OTPVerificationActivity"
             android:exported="false"
             android:label="Xác thực OTP"
             android:parentActivityName=".DangNhap" />
@@ -39,32 +46,32 @@
             android:parentActivityName=".DangNhap" /> <!-- /> -->
         <!-- </activity> -->
         <activity
-            android:name=".updateCanBo"
+            android:name=".Update.updateCanBo"
             android:exported="false"
-            android:label="Sửa cán bộ"
-            android:parentActivityName=".canbo_chitiet" />
+            android:label="Chỉnh sửa thông tin cán bộ"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Add.AddCanBo"
             android:exported="false"
             android:label="Thêm cán bộ"
             android:parentActivityName=".Activity.CanBoActivity" />
         <activity
-            android:name=".update_donvi"
+            android:name=".Update.update_sinhvien"
             android:exported="false"
-            android:label="Sửa đơn vị"
-            android:parentActivityName=".donvi_chitiet" />
+            android:label="Chỉnh sửa thông tin sinh viên"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Add.AddDonVi"
             android:exported="false"
             android:label="Thêm đơn vị"
             android:parentActivityName=".Activity.DonViActivity" />
         <activity
-            android:name=".donvi_chitiet"
+            android:name=".Chitiet.donvi_chitiet"
             android:exported="false"
             android:label="Thông tin chi tiết"
             android:parentActivityName=".Activity.DonViActivity" />
         <activity
-            android:name=".canbo_chitiet"
+            android:name=".Chitiet.canbo_chitiet"
             android:exported="false"
             android:label="Thông tin chi tiết"
             android:parentActivityName=".Activity.CanBoActivity" />
@@ -80,7 +87,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DangNhap"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

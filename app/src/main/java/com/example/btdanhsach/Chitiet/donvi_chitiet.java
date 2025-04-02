@@ -1,23 +1,18 @@
-package com.example.btdanhsach;
+package com.example.btdanhsach.Chitiet;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.bumptech.glide.Glide;
+import com.example.btdanhsach.R;
 
 public class donvi_chitiet extends AppCompatActivity {
     private TextView txtNameDV, txtAdressDV, txtSdtDV, txtIdDV;
@@ -47,9 +42,13 @@ public class donvi_chitiet extends AppCompatActivity {
         String name = intent.getStringExtra("name");
         String address = intent.getStringExtra("address");
         String sdt = intent.getStringExtra("sdt");
-        int avatar = intent.getIntExtra("avatar", R.drawable.avata);
+        String avatar = intent.getStringExtra("avatar");
 
-        imvDonvichitiet.setImageResource(avatar);
+        Glide.with(this)
+                .load(avatar) // Lấy ảnh đầu tiên trong danh sách
+                .placeholder(R.drawable.avata) // Ảnh tạm khi load
+                .error(R.drawable.avata) // Ảnh hiển thị nếu load lỗi
+                .into(imvDonvichitiet);
         txtNameDV.setText(name);
         txtAdressDV.setText(address);
         txtSdtDV.setText(sdt);
@@ -82,45 +81,45 @@ public class donvi_chitiet extends AppCompatActivity {
 
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.themsua, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_edit) {
-            // Mở màn hình chỉnh sửa đơn vị
-            Intent intent = new Intent(this, update_donvi.class);
-            intent.putExtra("id", iddonvi); // Gửi ID của đơn vị sang EditDonViActivity
-            intent.putExtra("name", txtNameDV.getText().toString());
-            intent.putExtra("address", txtAdressDV.getText().toString());
-            intent.putExtra("sdt", txtSdtDV.getText().toString());
-            startActivityForResult(intent, 300);
-            return true;
-        }
-
-        if (id == R.id.action_delete) {
-            // Hiển thị hộp thoại xác nhận xóa
-            new AlertDialog.Builder(this)
-                    .setTitle("Xóa Đơn Vị")
-                    .setMessage("Bạn có chắc chắn muốn xóa không?")
-                    .setPositiveButton("Xóa", (dialog, which) -> {
-                        DonViDAO dao = new DonViDAO(this);
-                        dao.delete(iddonvi); // Gọi hàm xóa từ DAO
-                        setResult(RESULT_OK); // Trả kết quả để cập nhật danh sách
-                        Toast.makeText(this, "Đã xóa", Toast.LENGTH_SHORT).show();
-                        finish(); // Đóng màn hình hiện tại
-                    })
-                    .setNegativeButton("Hủy", null)
-                    .show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.themsua, menu);
+//        return true;
+//    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if (id == R.id.action_edit) {
+//            // Mở màn hình chỉnh sửa đơn vị
+//            Intent intent = new Intent(this, update_donvi.class);
+//            intent.putExtra("id", iddonvi); // Gửi ID của đơn vị sang EditDonViActivity
+//            intent.putExtra("name", txtNameDV.getText().toString());
+//            intent.putExtra("address", txtAdressDV.getText().toString());
+//            intent.putExtra("sdt", txtSdtDV.getText().toString());
+//            startActivityForResult(intent, 300);
+//            return true;
+//        }
+//
+////        if (id == R.id.action_delete) {
+////            // Hiển thị hộp thoại xác nhận xóa
+////            new AlertDialog.Builder(this)
+////                    .setTitle("Xóa Đơn Vị")
+////                    .setMessage("Bạn có chắc chắn muốn xóa không?")
+////                    .setPositiveButton("Xóa", (dialog, which) -> {
+////                        DonViDAO dao = new DonViDAO(this);
+////                        dao.delete(iddonvi); // Gọi hàm xóa từ DAO
+////                        setResult(RESULT_OK); // Trả kết quả để cập nhật danh sách
+////                        Toast.makeText(this, "Đã xóa", Toast.LENGTH_SHORT).show();
+////                        finish(); // Đóng màn hình hiện tại
+////                    })
+////                    .setNegativeButton("Hủy", null)
+////                    .show();
+////            return true;
+////        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -2,9 +2,12 @@ package com.example.btdanhsach.Contact;
 
 public class CanBo {
     private String name, chucvu, sdt, email, donvicongtac, id, role;
-    private int avatar;
+    private String avatar;
 
-    public CanBo(String id, String name, String chucvu, String sdt, String email, String donvicongtac, int avatar) {
+    public CanBo() {
+    }
+
+    public CanBo(String id, String name, String chucvu, String sdt, String email, String donvicongtac, String avatar) {
         this.id = id;
         this.name = name;
         this.chucvu = chucvu;
@@ -62,11 +65,11 @@ public class CanBo {
         this.donvicongtac = donvicongtac;
     }
 
-    public int getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(int avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

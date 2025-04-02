@@ -6,79 +6,88 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".Chitiet.canbo_chitiet"
+    tools:context=".Chitiet.SinhVienChiTietActivity"
+    android:gravity="center_horizontal"
     android:fitsSystemWindows="true">
 
+    <!-- Avatar -->
     <ImageView
-        android:id="@+id/imv_AvataCB"
+        android:id="@+id/imv_AvatarSV"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
         android:scaleType="centerCrop"
-        android:layout_gravity="center"
         android:src="@drawable/avata" />
 
+    <!-- Tên sinh viên -->
     <TextView
-        android:id="@+id/txt_nameCB"
+        android:id="@+id/txt_nameSV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tên cán bộ"
+        android:text="Tên sinh viên"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_gravity="center" />
+        android:gravity="center" />
 
+    <!-- Mã sinh viên -->
     <TextView
-        android:id="@+id/txt_chucvuCB"
+        android:id="@+id/txt_maSV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chức vụ"
+        android:text="Mã sinh viên"
         android:textColor="#757575"
         android:textSize="16sp"
-        android:layout_gravity="center" />
+        android:gravity="center" />
 
+    <!-- Số điện thoại -->
     <TextView
-        android:id="@+id/txt_sdtCB"
+        android:id="@+id/txt_sdtSV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Số điện thoại"
         android:textColor="#757575"
         android:textSize="16sp"
-        android:layout_gravity="center" />
+        android:gravity="center" />
 
+    <!-- Email -->
     <TextView
-        android:id="@+id/txt_emailCB"
+        android:id="@+id/txt_emailSV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
         android:textColor="#757575"
         android:textSize="16sp"
-        android:layout_gravity="center" />
+        android:gravity="center" />
 
+    <!-- Địa chỉ -->
     <TextView
-        android:id="@+id/txt_donvicongtacCB"
+        android:id="@+id/txt_diachiSV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Đơn vị công tác"
+        android:text="Địa chỉ"
         android:textColor="#757575"
         android:textSize="16sp"
-        android:layout_gravity="center" />
+        android:gravity="center" />
 
+    <!-- Lớp -->
     <TextView
-        android:id="@+id/txt_idCB"
+        android:id="@+id/txt_lopSV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID"
+        android:text="Lớp"
         android:textColor="#757575"
         android:textSize="16sp"
-        android:layout_gravity="center" />
+        android:gravity="center" />
 
+    <!-- Các nút chức năng -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="32dp">
 
         <!-- Button Phone -->
         <androidx.cardview.widget.CardView
@@ -89,7 +98,7 @@
             app:cardElevation="4dp">
 
             <ImageButton
-                android:id="@+id/btnPhoneCB"
+                android:id="@+id/btnPhoneSV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -97,7 +106,7 @@
                 app:srcCompat="@drawable/phone" />
         </androidx.cardview.widget.CardView>
 
-        <!-- Button Chat -->
+        <!-- Button Email -->
         <androidx.cardview.widget.CardView
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -106,15 +115,15 @@
             app:cardElevation="4dp">
 
             <ImageButton
-                android:id="@+id/btnChatCB"
+                android:id="@+id/btnChatSV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Chat"
+                android:contentDescription="Email"
                 app:srcCompat="@drawable/chat" />
         </androidx.cardview.widget.CardView>
 
-        <!-- Button Video Call -->
+        <!-- Button Email -->
         <androidx.cardview.widget.CardView
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -123,23 +132,7 @@
             app:cardElevation="4dp">
 
             <ImageButton
-                android:id="@+id/btnVideoCallCB"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Video Call"
-                app:srcCompat="@drawable/videocall" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="4dp">
-
-            <ImageButton
-                android:id="@+id/btnEmailCB"
+                android:id="@+id/btnEmailSV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"

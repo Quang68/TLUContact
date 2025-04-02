@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".donvi_chitiet">
+    tools:context=".Chitiet.donvi_chitiet">
 
     <ImageView
         android:id="@+id/imv_Donvichitiet"

@@ -4,19 +4,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment">
+    tools:context=".ui.gallery.GalleryFragment"
+    android:background="#9AE1FA"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/text_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+    <!-- Avatar -->
+
+    <!-- Thông tin chi tiết -->
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avata"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Mã cán bộ -->
+        <TextView
+            android:id="@+id/txtMaCanBo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mã cán bộ: 123456"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@android:color/white"/>
+
+        <!-- Phân cách -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!-- Họ và tên -->
+        <TextView
+            android:id="@+id/txtHoVaTen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Họ và tên: Nguyễn Văn A"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@android:color/white"/>
+
+        <!-- Phân cách -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!-- Phòng ban -->
+        <TextView
+            android:id="@+id/txtPhongBan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phòng ban: Kỹ thuật"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@android:color/white"/>
+
+        <!-- Phân cách -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!-- Chức vụ -->
+        <TextView
+            android:id="@+id/txtChucVu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chức vụ: Trưởng phòng"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@android:color/white"/>
+
+        <!-- Phân cách -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!-- Số điện thoại -->
+        <TextView
+            android:id="@+id/txtSoDienThoai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số điện thoại: 0123456789"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@android:color/white"/>
+
+        <!-- Phân cách -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email: email@example.com"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@android:color/white"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

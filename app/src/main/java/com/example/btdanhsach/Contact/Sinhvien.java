@@ -2,7 +2,7 @@ package com.example.btdanhsach.Contact;
 
 public class Sinhvien {
     private String msv, name, sdt, email, address, lop, role;
-    private int avatar;
+    private String avatar;
 
     public Sinhvien(String msv, String name, String email, String role) {
         this.msv = msv;
@@ -11,7 +11,7 @@ public class Sinhvien {
         this.role = role;
     }
 
-    public Sinhvien(String msv, String name, String sdt, String email, String address, String lop, int avatar) {
+    public Sinhvien(String msv, String name, String sdt, String email, String address, String lop, String avatar) {
         this.msv = msv;
         this.name = name;
         this.sdt = sdt;
@@ -77,11 +77,11 @@ public class Sinhvien {
         this.role = role;
     }
 
-    public int getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(int avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

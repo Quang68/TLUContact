@@ -1,4 +1,4 @@
-package com.example.btdanhsach;
+package com.example.btdanhsach.SMS;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.btdanhsach.SMS.MailSender;
+import com.example.btdanhsach.MainActivity;
+import com.example.btdanhsach.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Random;

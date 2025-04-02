@@ -7,13 +7,12 @@ import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.btdanhsach.Add.AddDonVi;
 import com.example.btdanhsach.Contact.Donvi;
 import com.example.btdanhsach.DonViAdapter;
-import com.example.btdanhsach.DonViDAO;
+import com.example.btdanhsach.DAO.DonViDAO;
 import com.example.btdanhsach.R;
 
 import java.util.List;
@@ -50,27 +49,41 @@ public class DonViActivity extends AppCompatActivity {
             Intent intent = new Intent(DonViActivity.this, AddDonVi.class);
             startActivityForResult(intent, 100);
         });
-
-        // Xử lý sự kiện nhấn nút "Tìm kiếm"
-        btnFindDV.setOnClickListener(v -> {
-            String ten = editFindDV.getText().toString();
-            if (ten.isEmpty()) {
-                loadData();
-            } else {
-                donviList = dao.findDV(ten);
-                rcvDonVi.setLayoutManager(new LinearLayoutManager(this));
-                myAdapter = new DonViAdapter(this, donviList);
-                rcvDonVi.setAdapter(myAdapter);
-            }
-        });
+//
+//        // Xử lý sự kiện nhấn nút "Tìm kiếm"
+//        btnFindDV.setOnClickListener(v -> {
+//            String ten = editFindDV.getText().toString();
+//            if (ten.isEmpty()) {
+//                loadData();
+//            } else {
+//                donviList = dao.findDV(ten);
+//                rcvDonVi.setLayoutManager(new LinearLayoutManager(this));
+//                myAdapter = new DonViAdapter(this, donviList);
+//                rcvDonVi.setAdapter(myAdapter);
+//            }
+//        });
     }
 
     // Load dữ liệu từ SQLite và cập nhật RecyclerView
+//    private void loadData() {
+//        donviList = dao.getAll();
+//        rcvDonVi.setLayoutManager(new LinearLayoutManager(this));
+//        myAdapter = new DonViAdapter(this, donviList);
+//        rcvDonVi.setAdapter(myAdapter);
+//    }
+
     private void loadData() {
-        donviList = dao.getAll();
-        rcvDonVi.setLayoutManager(new LinearLayoutManager(this));
-        myAdapter = new DonViAdapter(this, donviList);
-        rcvDonVi.setAdapter(myAdapter);
+        dao.fetchDonviList(new DonViDAO.StaffListCallback(){
+            @Override
+            public void onCallback(List<Donvi> DonviList) {
+                if(myAdapter == null){
+                    myAdapter = new DonViAdapter(DonViActivity.this, DonviList);
+                    rcvDonVi.setAdapter(myAdapter);
+                } else {
+                    myAdapter.updateList(DonviList);
+                }
+            }
+        });
     }
 
     // Cập nhật danh sách khi quay lại từ AddDonVi hoặc xóa đơn vị

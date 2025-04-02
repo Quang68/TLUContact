@@ -2,12 +2,19 @@ package com.example.btdanhsach.Contact;
 
 public class Donvi {
     private String id, address, name, sdt;
-    private int avatar;
+    private String avatar;
 
     public Donvi() {
     }
 
-    public Donvi(String id, String address, String name, int avatar, String sdt) {
+    public Donvi(String address, String name, String sdt, String avatar) {
+            this.address = address;
+            this.name = name;
+            this.sdt = sdt;
+            this.avatar = avatar;
+    }
+
+    public Donvi(String id, String address, String name, String avatar, String sdt) {
         this.id = id;
         this.address = address;
         this.name = name;
@@ -47,11 +54,11 @@ public class Donvi {
         this.name = name;
     }
 
-    public int getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(int avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

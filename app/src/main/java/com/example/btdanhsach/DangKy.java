@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.btdanhsach.SMS.OTPVerificationActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -103,6 +104,13 @@ public class DangKy extends AppCompatActivity {
 
         // 🔹 Lưu vào bảng "students" hoặc "staff" tùy theo vai trò
         String collectionName = role.equals("Sinh viên") ? "students" : "staff";
+        if(collectionName.equals("students")) {
+            user.put("lop", "");
+            user.put("address", "");
+        } else {
+            user.put("position", "");
+            user.put("department", "");
+        }
 
         db.collection(collectionName).document(userId)
                 .set(user)

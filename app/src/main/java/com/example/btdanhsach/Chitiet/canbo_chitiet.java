@@ -1,11 +1,10 @@
-package com.example.btdanhsach;
+package com.example.btdanhsach.Chitiet;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,11 +12,11 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.bumptech.glide.Glide;
+import com.example.btdanhsach.R;
+import com.example.btdanhsach.Update.updateCanBo;
 
 public class canbo_chitiet extends AppCompatActivity {
     // rivate String name, chucvu, sdt, email, donvicongtac, id;
@@ -54,15 +53,19 @@ public class canbo_chitiet extends AppCompatActivity {
         String sdt = intent.getStringExtra("sdt");
         String email = intent.getStringExtra("email");
         String donvicongtac = intent.getStringExtra("donvicongtac");
-        int avatar = intent.getIntExtra("avatar", R.drawable.avata);
+        String avatar = intent.getStringExtra("avatar");
 
-        imvAvata.setImageResource(avatar);
-        txtName.setText(name);
-        txtchucvu.setText(chucvu);
-        txtSdt.setText(sdt);
-        txtEmail.setText(email);
-        txtDonvicongtac.setText(donvicongtac);
-        txtId.setText(idcanbo);
+        Glide.with(this)
+                .load(avatar) // Lấy ảnh đầu tiên trong danh sách
+                .placeholder(R.drawable.avata) // Ảnh tạm khi load
+                .error(R.drawable.avata) // Ảnh hiển thị nếu load lỗi
+                .into(imvAvata);
+        txtName.setText("Tên: " +name);
+        txtchucvu.setText("Chức vụ: " + chucvu);
+        txtSdt.setText("SĐT: "+ sdt);
+        txtEmail.setText("Email: "+email);
+        txtDonvicongtac.setText("Phòng ban: "+donvicongtac);
+        txtId.setText("MCB: "+idcanbo);
 
         // Sự kiện khi nhấn nút gọi điện
         btnphone.setOnClickListener(v -> {
@@ -100,58 +103,58 @@ public class canbo_chitiet extends AppCompatActivity {
         });
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.themsua, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.themsua, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_edit) {
-            // Mở màn hình chỉnh sửa cán bộ
-            Intent intent = new Intent(this, updateCanBo.class);
-            intent.putExtra("id", idcanbo); // Gửi ID của cán bộ sang EditDonViActivity
-            intent.putExtra("name", txtName.getText().toString());
-            intent.putExtra("chucvu", txtchucvu.getText().toString());
-            intent.putExtra("sdt", txtSdt.getText().toString());
-            intent.putExtra("email", txtEmail.getText().toString());
-            intent.putExtra("donvicongtac", txtDonvicongtac.getText().toString());
-            startActivityForResult(intent, 300);
-            return true;
-        }
-
-        if (id == R.id.action_delete) {
-            // Hiển thị hộp thoại xác nhận xóa
-            new AlertDialog.Builder(this)
-                    .setTitle("Xóa Cán bộ")
-                    .setMessage("Bạn có chắc chắn muốn xóa không?")
-                    .setPositiveButton("Xóa", (dialog, which) -> {
-                        CanBoDAO dao = new CanBoDAO(this);
-                        dao.delete(idcanbo); // Gọi hàm xóa từ DAO
-                        setResult(RESULT_OK); // Trả kết quả để cập nhật danh sách
-                        Toast.makeText(this, "Đã xóa", Toast.LENGTH_SHORT).show();
-                        finish(); // Đóng màn hình hiện tại
-                    })
-                    .setNegativeButton("Hủy", null)
-                    .show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if (id == R.id.action_edit) {
+//            // Mở màn hình chỉnh sửa cán bộ
+//            Intent intent = new Intent(this, updateCanBo.class);
+//            intent.putExtra("id", idcanbo); // Gửi ID của cán bộ sang EditDonViActivity
+//            intent.putExtra("name", txtName.getText().toString());
+//            intent.putExtra("chucvu", txtchucvu.getText().toString());
+//            intent.putExtra("sdt", txtSdt.getText().toString());
+//            intent.putExtra("email", txtEmail.getText().toString());
+//            intent.putExtra("donvicongtac", txtDonvicongtac.getText().toString());
+//            startActivityForResult(intent, 300);
+//            return true;
+//        }
+//
+////        if (id == R.id.action_delete) {
+////            // Hiển thị hộp thoại xác nhận xóa
+////            new AlertDialog.Builder(this)
+////                    .setTitle("Xóa Cán bộ")
+////                    .setMessage("Bạn có chắc chắn muốn xóa không?")
+////                    .setPositiveButton("Xóa", (dialog, which) -> {
+////                        CanBoDAO dao = new CanBoDAO(this);
+////                        dao.delete(idcanbo); // Gọi hàm xóa từ DAO
+////                        setResult(RESULT_OK); // Trả kết quả để cập nhật danh sách
+////                        Toast.makeText(this, "Đã xóa", Toast.LENGTH_SHORT).show();
+////                        finish(); // Đóng màn hình hiện tại
+////                    })
+////                    .setNegativeButton("Hủy", null)
+////                    .show();
+////            return true;
+////        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 300 && resultCode == RESULT_OK) {
             // Cập nhật lại thông tin đơn vị sau khi chỉnh sửa String name, chucvu, sdt, email, donvicongtac, id;
-            txtName.setText(data.getStringExtra("name"));
-            txtchucvu.setText(data.getStringExtra("chucvu"));
-            txtSdt.setText(data.getStringExtra("sdt"));
-            txtEmail.setText(data.getStringExtra("email"));
-            txtDonvicongtac.setText(data.getStringExtra("donvicongtac"));
+            txtName.setText("Tên: " + data.getStringExtra("name"));
+            txtchucvu.setText("Chức vụ: " + data.getStringExtra("chucvu"));
+            txtSdt.setText("SĐT: "+ data.getStringExtra("sdt"));
+            txtEmail.setText("Email: "+data.getStringExtra("email"));
+            txtDonvicongtac.setText("Phòng ban: "+data.getStringExtra("donvicongtac"));
             setResult(RESULT_OK); // Trả kết quả để cập nhật danh sách
         }
 

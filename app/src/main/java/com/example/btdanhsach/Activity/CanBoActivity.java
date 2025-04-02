@@ -2,18 +2,16 @@ package com.example.btdanhsach.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.btdanhsach.Add.AddCanBo;
 import com.example.btdanhsach.CanBoAdapter;
-import com.example.btdanhsach.CanBoDAO;
+import com.example.btdanhsach.DAO.CanBoDAO;
 import com.example.btdanhsach.Contact.CanBo;
 import com.example.btdanhsach.R;
 
@@ -52,32 +50,46 @@ public class CanBoActivity extends AppCompatActivity {
             startActivityForResult(intent, 100);
         });
 
-        // Xử lý sự kiện nhấn nút "Tìm kiếm"
-        btnFind.setOnClickListener(v -> {
-            String ten = editFind.getText().toString();
-            if (ten.isEmpty()){
-                loadData();
-                return;
-            }
-            FindView(ten);
-        });
+//        // Xử lý sự kiện nhấn nút "Tìm kiếm"
+//        btnFind.setOnClickListener(v -> {
+//            String ten = editFind.getText().toString();
+//            if (ten.isEmpty()){
+//                loadData();
+//                return;
+//            }
+//            FindView(ten);
+//        });
 
+    }
+    // Load dữ liệu từ Firebase và cập nhật RecyclerView
+    private void loadData() {
+        dao.fetchStaffList(new CanBoDAO.StaffListCallback(){
+            @Override
+            public void onCallback(List<CanBo> staffList) {
+                if(myAdapter == null){
+                    myAdapter = new CanBoAdapter(CanBoActivity.this, staffList);
+                    rcvCBNV.setAdapter(myAdapter);
+                } else {
+                    myAdapter.updateList(staffList);
+                }
+            }
+        });
     }
     // Load dữ liệu từ SQLite và cập nhật RecyclerView
-    private void loadData() {
-        canBoList = dao.getAll();
-        rcvCBNV.setLayoutManager(new LinearLayoutManager(this));
-        myAdapter = new CanBoAdapter(this, canBoList);
-        rcvCBNV.setAdapter(myAdapter);
-    }
+//    private void loadData() {
+//        canBoList = dao.getAll();
+//        rcvCBNV.setLayoutManager(new LinearLayoutManager(this));
+//        myAdapter = new CanBoAdapter(this, canBoList);
+//        rcvCBNV.setAdapter(myAdapter);
+//    }
 
 
-    private void FindView(String ten) {
-        canBoList = dao.find(ten);
-        rcvCBNV.setLayoutManager(new LinearLayoutManager(this));
-        myAdapter = new CanBoAdapter(this, canBoList);
-        rcvCBNV.setAdapter(myAdapter);
-    }
+//    private void FindView(String ten) {
+//        canBoList = dao.find(ten);
+//        rcvCBNV.setLayoutManager(new LinearLayoutManager(this));
+//        myAdapter = new CanBoAdapter(this, canBoList);
+//        rcvCBNV.setAdapter(myAdapter);
+//    }
 
     // Cập nhật danh sách khi quay lại từ AddCanBo hoặc xóa cán bộ
     @Override

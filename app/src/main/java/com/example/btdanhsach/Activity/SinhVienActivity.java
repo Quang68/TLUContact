@@ -7,27 +7,20 @@ import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.btdanhsach.Add.AddCanBo;
 import com.example.btdanhsach.Add.AddSinhVien;
-import com.example.btdanhsach.CanBoAdapter;
-import com.example.btdanhsach.CanBoDAO;
-import com.example.btdanhsach.Contact.CanBo;
 import com.example.btdanhsach.Contact.Sinhvien;
 import com.example.btdanhsach.R;
 import com.example.btdanhsach.SinhVienAdapter;
-import com.example.btdanhsach.SinhVienDAO;
+import com.example.btdanhsach.DAO.SinhVienDAO;
 
 import java.util.List;
 
 public class SinhVienActivity extends AppCompatActivity {
 
-    private RecyclerView rcvCBNV;
+    private RecyclerView rcvSinhVien;
     private SinhVienAdapter myAdapter;
     private List<Sinhvien> sinhvienList;
     private SinhVienDAO dao;
@@ -42,10 +35,13 @@ public class SinhVienActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sinh_vien);
 
         // Ánh xạ view
-        rcvCBNV = findViewById(R.id.rcv_sinhvien);
+        rcvSinhVien = findViewById(R.id.rcv_sinhvien);
         btnAdd = findViewById(R.id.btn_AddSinhvien);
         btnFind = findViewById(R.id.btnfindSinhvien);
         editFind = findViewById(R.id.edit_findSinhvien);
+
+        //
+        rcvSinhVien.setLayoutManager(new LinearLayoutManager(this));
 
         dao = new SinhVienDAO(this);
 
@@ -58,18 +54,32 @@ public class SinhVienActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        sinhvienList = dao.getAll();
-        rcvCBNV.setLayoutManager(new LinearLayoutManager(this));
-        myAdapter = new SinhVienAdapter(this, sinhvienList);
-        rcvCBNV.setAdapter(myAdapter);
+        dao.fetchStaffList(new SinhVienDAO.StaffListCallback() {
+            @Override
+            public void onCallback(List<Sinhvien> staffList) {
+                if(myAdapter == null){
+                    myAdapter = new SinhVienAdapter(SinhVienActivity.this, staffList);
+                    rcvSinhVien.setAdapter(myAdapter);
+                } else {
+                    myAdapter.updateList(staffList);
+                }
+            }
+        });
     }
+
+//    private void loadData() {
+//        sinhvienList = dao.getAll();
+//        rcvSinhVien.setLayoutManager(new LinearLayoutManager(this));
+//        myAdapter = new SinhVienAdapter(this, sinhvienList);
+//        rcvSinhVien.setAdapter(myAdapter);
+//    }
 
     // Cập nhật danh sách khi quay lại từ AddCanBo hoặc xóa cán bộ
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // requestCode == 100 || requestCode == 200 || requestCode == 300 && resultCode == RESULT_OK
-        if(requestCode == 100 && resultCode == RESULT_OK){
+        if(requestCode == 100 || requestCode == 200 && resultCode == RESULT_OK){
             loadData(); // Load lại danh sách khi có thay đổi
         }
     }

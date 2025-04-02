@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:fitsSystemWindows="true"
-    tools:context=".update_donvi">
+    tools:context=".Update.update_sinhvien">
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -25,12 +25,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="ID: "
+                android:text="MSV: "
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edit_IDsua"
+                android:id="@+id/edit_IDsuaSinhVien"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -48,35 +48,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name: "
+                android:text="Họ tên: "
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edit_namesua"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:inputType="text"
-                android:backgroundTint="#FF6200EE"
-                android:padding="8dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Address: "
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/edit_addresssua"
+                android:id="@+id/edit_namesuaSinVien"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -99,7 +76,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edit_sdtsua"
+                android:id="@+id/edit_sdtsuaSinhVien"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -107,10 +84,80 @@
                 android:backgroundTint="#FF6200EE"
                 android:padding="8dp" />
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Địa chỉ: "
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edit_addresssuaSinhVien"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:inputType="text"
+                android:backgroundTint="#FF6200EE"
+                android:padding="8dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Lớp: "
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edit_LopSuaSinhVien"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:inputType="text"
+                android:backgroundTint="#FF6200EE"
+                android:padding="8dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ảnh: "
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edit_AvatarSuaSinhVien"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:inputType="text"
+                android:backgroundTint="#FF6200EE"
+                android:padding="8dp" />
+        </TableRow>
+
     </TableLayout>
 
     <Button
-        android:id="@+id/btn_update"
+        android:id="@+id/btn_updateSinhvien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

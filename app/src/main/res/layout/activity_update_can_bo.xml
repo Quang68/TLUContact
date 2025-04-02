@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:fitsSystemWindows="true"
-    tools:context=".updateCanBo">
+    tools:context=".Update.updateCanBo">
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -20,12 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp">
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="ID:"
+                android:text="Mã cán bộ:"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -48,7 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name:"
+                android:text="Tên:"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -128,7 +127,8 @@
                 android:layout_weight="2"
                 android:inputType="textEmailAddress"
                 android:backgroundTint="#FF6200EE"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:enabled="false"/>
         </TableRow>
 
         <TableRow
@@ -146,6 +146,29 @@
 
             <EditText
                 android:id="@+id/edit_donvicongtacSuaCB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:inputType="text"
+                android:backgroundTint="#FF6200EE"
+                android:padding="8dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ảnh:"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edit_AnhCB"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
